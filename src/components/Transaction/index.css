@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  align-self: center
+}
+
+.newTransaction{
+
+  padding-top: 2%;
+}
+table{
+  margin-top: 2%;
+}

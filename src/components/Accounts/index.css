@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.Account {
+  padding:  2%;
+  text-align: center;
+}
+
+div.Home > table > thead > tr > th
+{
+  vertical-align: middle;  
+  font-size: 120%;
+}
+
+.btn-group{
+  margin-left: 4%;
+}
