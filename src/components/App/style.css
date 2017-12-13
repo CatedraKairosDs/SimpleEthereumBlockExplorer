@@ -26,3 +26,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.navbar-custom {
+  color: rgb(226, 218, 218);
+  background-color: rgb(31, 27, 27);
+}
+#boton1 {
+  background-color: rgba(233, 229, 229, 0.938);
+}
+

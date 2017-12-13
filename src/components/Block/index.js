@@ -1,68 +1,66 @@
 import React, { Component } from 'react';
-import './index.css';
-import { Link } from 'react-router-dom'
+import './style.css';
 import Web3 from 'web3';
-import { Table } from 'reactstrap'
+//import imagen from './block.png'
+import { Link } from 'react-router-dom'
+import { Table } from 'react-bootstrap'
+import { Button} from 'react-bootstrap'
 
+var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 
-
-var web3 = new Web3(new Web3.providers.HttpProvider('http://0.0.0.0:8545'));
-
-class Block extends React.Component {
+class Block extends Component {
   constructor(props) {
     super(props);
     this.state = {
       block: []
-    };
+    }
   }
-  componentWillMount() {
 
-    var block_id = this.props.match.params.block_ids;
+  componentWillMount() {
+    // Get the block hash from URL arguments (defined by Route pattern)
+    var block_id = this.props.match.params.blockId;
     this.getBlockState(block_id);
   }
 
   getBlockState(block_id) {
-    console.log("Block number: " + block_id);
-
-
+    console.log("Block id: " + block_id);
+    // Use web3 to get the Block object
     var promise = new Promise((resolve, reject) => {
-
       web3.eth.getBlock(block_id, (error, currBlockObj) => {
-        if (!error) {
-          console.log(currBlockObj);
+        if (!error)
           resolve(currBlockObj);
-        }
-        else {
-          console.log("Error, promise rejected");
+        else
           reject(error);
-        }
-      });
+      })
     });
-
-
     promise
-      .then(
-      (currBlockObj) => {
+      .then((currBlockObj)=>{
         this.setState({
           block_id: currBlockObj.number,
           block_hash: currBlockObj.hash,
           block_ts: Date(parseInt(this.state.block.timestamp, 10)).toString(),
           block_txs: parseInt(currBlockObj.transactions.slice().length, 10),
           block: currBlockObj
-        });
+        })
       })
-      .catch(console.error.bind(console));
+      .catch((error) => console.log(error));
 
   }
+
   render() {
     const block = this.state.block;
     const difficulty = parseInt(block.difficulty, 10);
     const difficultyTotal = parseInt(block.totalDifficulty, 10);
     return (
-      <div className="Block">
-        <h2>Block Info</h2>
+      <div className="Block" >
         <div>
-          <Table bordered condensed striped>
+          <div className="Button text-left"><text> Block Info</text></div>
+          <div className="Button text-right"> <button type="button" class="btn btn-outline-info">
+            <Link to="/" id="boton">Return </Link></button> </div>
+        </div>
+         
+        <div className="table">
+        <Table size="sm" striped bordered condensed hover >
             <tbody>
               <tr><td className="tdLabel">Height: </td><td>{this.state.block.number}</td></tr>
               <tr><td className="tdLabel">Timestamp: </td><td>{this.state.block_ts}</td></tr>
@@ -80,7 +78,7 @@ class Block extends React.Component {
             </tbody>
           </Table>
         </div>
-      </div>
+      </div >
     );
   }
 }

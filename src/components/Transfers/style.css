@@ -1,0 +1,28 @@
+.header1 {
+    
+}
+.form {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.Button {
+    display: inline-block;
+}
+.text-left {
+    float: left;
+    font-size: xx-large;
+    padding-left: 10%;
+}
+.text-right {
+    float: right;
+    padding-right: 10%;
+}
+#boton {
+    color: #0c5b66;
+    background-color: transparent;
+}
+#boton:hover {
+    color: rgb(255, 255, 255);
+    background-color: transparent;
+    text-decoration: none;
+}
